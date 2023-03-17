@@ -24,7 +24,7 @@
                         <?php foreach($data['all_pembayaran'] as $pembayaran):?>
                             <tr>
                                 <td><?= $pembayaran['nominal']?></td>
-                                <td><?= $pembayaran['tahun_ajaran']?></td>
+                                <td><?= printYearSPP($pembayaran['tahun_ajaran'])?></td>
                                 <td>
                                     <a class="btn btn-warning" href="<?= BASE_URL?>/admin_pembayaran/edit/<?= $pembayaran['id']?>">Edit</a>
                                     <form class="d-inline" action="<?= BASE_URL?>/admin_pembayaran/destroy/<?= $pembayaran['id']?>" method="post">

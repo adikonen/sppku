@@ -1,7 +1,5 @@
 <?php
 
-importModel('Kelas');
-
 /**
  * handle request with prefix / or /redirector
  */

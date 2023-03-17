@@ -12,8 +12,8 @@ class Admin_Petugas extends AdminController
      */
     public function __construct()
     {
-        parent::__construct();
-        admin_only();
+        // parent::__construct();
+        // admin_only();
     }
 
     /**
