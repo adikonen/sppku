@@ -45,4 +45,51 @@ class Transaksi extends Model
         ->bind(':t',$tahun)
         ->rowCount();
     }
+
+    public static function getChartData()
+    {
+        $currentYear = date("Y");
+    
+        $sql = "SELECT date_format(tanggal_bayar, '%m') as month,sum(nominal) as total
+            from transaksi_pembayaran_view WHERE YEAR(tanggal_bayar) = $currentYear
+            group by date_format(tanggal_bayar, '%m') ORDER BY date_format(tanggal_bayar, '%m') ";
+        
+        // $this->db->query($sql);
+        // $result = $this->db->resultSet();
+        $result = static::$db->query($sql)->resultAll();
+        $pemasukan = [];
+        $skipedIndexs = [];
+
+        for($i = 0; $i < 12; $i++) {
+            
+            if(in_array($i,$skipedIndexs)) {
+                continue;
+            }
+
+            if(!isset($result[$i])) {
+                $pemasukan[$i] = 0;
+                continue;
+            };
+            //mengikuti index karena bulan itu start dari 1 sedangkan 
+            //array index start nya dari 0
+            $month_num = (int) $result[$i]['month'] - 1; 
+            if($i == $month_num) {
+                $pemasukan[$i] = $result[$i]['total'];
+            }
+            else {
+                $pemasukan[$month_num] = $result[$i]['total'];
+                $pemasukan[$i] = 0;
+                $skipedIndexs[] = $month_num;  
+            }      
+        }
+        
+        $output = [];
+
+        // sorting
+        for($i = 0; $i < 12; $i++) {
+            $output[$i] = $pemasukan[$i];
+        }
+
+        return $output;
+    }
 }

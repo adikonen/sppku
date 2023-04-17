@@ -62,12 +62,22 @@
         </div>
     </div>
 </div>
-<div class="fit-content mx-auto" style="width:fit-content;">
+<div class="card">
+    <div class="card-header text-primary">
+        Pemasukan Tahun ini
+    </div>
+    <div class="card-body">
+        <div class="chart-area">
+            <canvas id="myAreaChart"></canvas>
+        </div>
+    </div>
+</div>
+<!-- <div class="fit-content mx-auto" style="width:fit-content;">
     <video  autoplay muted>
         <source src="<?= BASE_URL?>/video/bumi.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-</div>
+</div> -->
 
 <script>
 // show prompt when btn report clicked

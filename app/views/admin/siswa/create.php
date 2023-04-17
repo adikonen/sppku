@@ -48,7 +48,7 @@
                 <label for="kelas_id" class="form-label">
                     Kelas
                 </label>
-                <select name="kelas_id" id="kelas_id" class="form-control">
+                <select name="kelas_id" id="kelas_id" class="form-control select2" style="width: 100%;">
                     <?php foreach($data['all_kelas'] as $kelas):?>
                         <option value="<?= $kelas['id']?>">
                             <?= $kelas['nama_kelas']?>

@@ -9,11 +9,11 @@
                 <div class="bg-info text-white p-3 rounded-lg">
                     <div>Nominal : <?= $pembayaran['nominal']?></div>
                     <div>Tahun Ajaran : <?= printYearSPP($pembayaran['tahun_ajaran'])?></div>
-                    <div>Sudah Lunas : <?= $pembayaran['description']?></div>
+                    <div>Status Lunas : <?= $pembayaran['description']?></div>
                 </div>  
                 <div class="text-center mt-2">
                     <?php if($pembayaran['is_done']):?>
-                        <i class="fa fa-fw fa-check text-success fa-2x"></i>
+                        <?php component('icon/done',['size' => 2]);?>
                     <?php endif;?>
                 </div>
             </div>
@@ -23,10 +23,10 @@
     <div class="alert alert-primary my-3">
         Mohon bayar tepat waktu
     </div>
-    <div class="fit-content mx-auto my-3" style="width:fit-content;">
+    <!-- <div class="fit-content mx-auto my-3" style="width:fit-content;">
         <video  autoplay muted>
             <source src="<?= BASE_URL?>/video/bumi.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-    </div>
+    </div> -->
 </div>

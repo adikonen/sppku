@@ -18,8 +18,16 @@ class Admin extends AdminController
         $data = [
             'petugas_count' => $petugas_count,
             'siswa_count' => $siswa_count,
-            'pengguna_count' => $petugas_count + $siswa_count
+            'pengguna_count' => $petugas_count + $siswa_count,
         ];
+
+        TemplateView::addScriptsSource(
+            'vendor/chart.js/Chart.js',
+        );
+
+        TemplateView::addComponent('footer', 'charts/dashboard', [
+            'chart_json' => json_encode(Transaksi::getChartData())
+        ]);
 
         return $this->render('dashboard/index', $data);
     }
@@ -63,4 +71,9 @@ class Admin extends AdminController
         
         return $this->view('admin/laporan/index', $data);
     }
+
+    // public function api_chart()
+    // {
+    //     echo json_encode(Transaksi::getChartData());
+    // }
 }

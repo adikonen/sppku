@@ -13,6 +13,12 @@ function importModel(...$models)
     }
 }
 
+function importHelper(...$helpers)
+{
+    foreach ($helpers as $helper) {
+    }
+}
+
 /**
  * dump and die
  * @param mixed $vars
@@ -136,4 +142,13 @@ function printYearSpp($tahun_ajaran)
 {
     $nextyear = $tahun_ajaran + 1;
     return "$tahun_ajaran / $nextyear";
+}
+
+function http_post_only()
+{
+    if (strtoupper($_SERVER['REQUEST_METHOD']) != 'POST') {
+        http_response_code(405);
+        Flasher::set('warning','Maaf anda tidak dapat mengunjungi halaman tersebut.');
+        return redirect('redirector');
+    }
 }

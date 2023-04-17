@@ -53,7 +53,7 @@
             </div>
             <div class="mb-3">
                 <label for="pembayaran_id" class="form-label">
-                    Pembayaran (otomatis bertambah jika transaksi sudah lunas)
+                    Pembayaran (tahun otomatis naik jika transaksi sudah lunas)
                 </label>
                 <select name="pembayaran_id" id="pembayaran_id" class="form-control" disabled>
                     <?php foreach($data['all_pembayaran'] as $pembayaran):?>

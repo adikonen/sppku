@@ -1,12 +1,16 @@
 <?php
 
-importModel('pengguna', 'siswa','kelas','pembayaran');
-
+importModel('pengguna','siswa','kelas','pembayaran');
 /**
  * handle request with prefix /admin_siswa
  */
 class Admin_Siswa extends AdminController
 {
+    /**
+     * @var SiswaHelper
+     */
+    protected $siswaHelper;
+
     /**
      * only admin have access to run all method
      */
@@ -14,7 +18,30 @@ class Admin_Siswa extends AdminController
     {
         parent::__construct();
         admin_only();
+        $this->siswaHelper = $this->helper('SiswaHelper');
     }
+
+    // private function validateTahunMulai($tahun_ajaran)
+    // {
+    //     $count = count(Pembayaran::select('tahun_ajaran')
+    //         ->whereFor('tahun_ajaran','>', $tahun_ajaran)
+    //         ->get());
+
+    //     $error = [$tahun_ajaran + 1, $tahun_ajaran + 2];
+
+    //     if ($count >= 2) {
+    //         return ;
+    //     }
+
+    //     if ($count == 1) {
+    //         array_pop($error);
+    //     }
+
+    //     $years = implode(' dan ',$error);
+
+    //     Flasher::set('danger', "Buat data referensi pembayaran dengan angka tahun {$years} terlebih dahulu");
+    //     return redirect('admin_pembayaran');
+    // }
 
     /**
      * display siswa tables
@@ -63,8 +90,15 @@ class Admin_Siswa extends AdminController
         $username = $nis;
         $password = bcrypt($request->input('password'));
 
-        $siswa_form = $request->only('nisn', 'nama_siswa','alamat','telepon','kelas_id','tahun_mulai');
+        $siswa_form = $request->only(
+            'nisn', 'nama_siswa','alamat','telepon','kelas_id','tahun_mulai'
+        );
+
         $siswa_form['nis'] = $nis;
+
+        $this->siswaHelper
+            ->validateTahunMulai($siswa_form['tahun_mulai'])
+            ->validateNisAndNisn($siswa_form['nis'], $siswa_form['nisn']);
 
         // need pembayaran_id for creating new siswa
         $pembayaran = Pembayaran::select('id')->where(['tahun_ajaran' => $siswa_form['tahun_mulai']])->first();
@@ -108,6 +142,8 @@ class Admin_Siswa extends AdminController
         $username = $request->input('nis');
         $siswa_form = $request->only('nisn','nis','nama_siswa','alamat','telepon','kelas_id');
 
+        $this->siswaHelper->validateNisAndNisn($siswa_form['nis'], $siswa_form['nisn']);
+        
         $db = new Database;
         
         try {
@@ -134,13 +170,14 @@ class Admin_Siswa extends AdminController
      */
     public function destroy($pengguna_id)
     {
-        Flasher::set('success','Berhasil menghapus siswa');
         try {
             Pengguna::delete($pengguna_id);
         } catch (Exception $err) {
             Flasher::set('danger', 'Gagal menghapus siswa, siswa ini memiliki relasi dengan data lainnya');
             ErrorHandler::log($err, 'delete siswa', ['id_pengguna' => $pengguna_id]);
+            return redirect('admin_siswa');
         }
+        Flasher::set('success','Berhasil menghapus siswa');
         return redirect('admin_siswa');
     }
 }

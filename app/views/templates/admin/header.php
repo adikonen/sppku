@@ -25,7 +25,8 @@
     <link href="<?= BASE_URL?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= BASE_URL?>/css/style.css">
     <script src="<?= BASE_URL?>/js/script.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
 </head>
 
 <body id="page-top">
@@ -169,8 +170,6 @@
                             </div>
                         </li>
 
-                        
-
                         <div class="mt-4">
                             <i class="fa fa-fw fa-calendar"></i>
                             <?= date('Y-m-d')?>
@@ -191,7 +190,14 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 
-                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="<?= BASE_URL?>/admin_petugas/edit/<?= $user['pengguna_id']?>">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="<?= BASE_URL?>/admin_reset_password">
+                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Reset Password
+                                </a>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout

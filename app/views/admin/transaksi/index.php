@@ -17,6 +17,8 @@
                             <th>Nis</th>
                             <th>Nama siswa</th>
                             <th>Telepon</th>
+                            <td>Tahun Mulai</td>
+                            <th>Sudah Lunas</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -26,6 +28,13 @@
                                 <td><?= $siswa['nis']?></td>
                                 <td><?= $siswa['nama_siswa']?></td>
                                 <td><?= $siswa['telepon']?></td>
+                                <td><?= $siswa['tahun_mulai']?></td>
+                                <td>
+                                    <?= $siswa['sudah_lunas'] 
+                                        ? component('icon/done', ['size' => 2]) 
+                                        : component('icon/flag', ['size' => 2]);
+                                    ?>
+                                </td>
                                 <td>
                                     <a class="btn btn-info" href="<?= BASE_URL?>/admin_transaksi/create/<?= $siswa['id']?>/<?= $siswa['tahun_mulai']?>">Entry</a>
                                     <a class="btn btn-success" href="<?= BASE_URL?>/admin_transaksi/history/<?= $siswa['id']?>">History</a>

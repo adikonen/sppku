@@ -17,7 +17,7 @@ class Model
     /**
      * @var string $query
      */
-    protected static $query;
+    public static $query;
 
     /**
      * @var array $unbindedColumn
@@ -197,6 +197,13 @@ class Model
         return $this;
     }
 
+    public function whereFor($column, $op, $value, $suffix = null)
+    {
+        static::$query .= " WHERE $column $op :$column $suffix";
+        static::$unbindedColumn[$column] = $value;
+        return $this;
+    }
+
     /**
      * execute query, then return 2d array
      * @return array
@@ -205,6 +212,7 @@ class Model
     {
         $q = static::$query;
         $unbindedColumn = static::$unbindedColumn;
+        $this->clear();
         return static::$db->query($q)->binds($unbindedColumn)->resultAll();
     }
 

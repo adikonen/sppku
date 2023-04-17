@@ -51,9 +51,18 @@ class App
             $this->params = array_values($url);
         }
 
+
+        $post_method = ['store','update','action'];
+
+        // automatically http_post only each method in $post_method
+        if (in_array($this->method, $post_method)) {
+            http_post_only();
+        }
+
         try {
             call_user_func_array([$this->controller, $this->method], $this->params);
         } catch (Exception $err) {
+            Flasher::set('warning', 'Terjadi kesalahan pada sistem. Hubungi developer dengan segera.');
             ErrorHandler::log($err, 'Something went wrong', [
                 'controller' => $this->controller,
                 'method' => $this->method,

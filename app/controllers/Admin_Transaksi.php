@@ -135,10 +135,18 @@ class Admin_Transaksi extends AdminController
             if ($count >= 12) {
                 // count siswa transaction on all years
                 $year_count = Transaksi::select('bulan_dibayar')->where(['siswa_id' => $form['siswa_id']])->rowCount();
+                
+                // next query will use siswa.id instead id_pengguna
+                Siswa::setPrimaryKey('id');
+
                 if ($year_count < 36) {
-                    Siswa::setPrimaryKey('id');
                     Siswa::update($form['siswa_id'], [
                         'pembayaran_id' => Pembayaran::nextId($tahun_ajaran)
+                    ]);
+                } else {
+                    // set sudah lunas to true cause he has paid all month in 3 years
+                    Siswa::update($form['siswa_id'], [
+                        'sudah_lunas' => true
                     ]);
                 }
             }

@@ -18,6 +18,8 @@
                             <th>Nis</th>
                             <th>Nama siswa</th>
                             <th>Telepon</th>
+                            <th>Tahun Mulai</th>
+                            <th>SPP Lunas</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -27,6 +29,13 @@
                                 <td><?= $siswa['nis']?></td>
                                 <td><?= $siswa['nama_siswa']?></td>
                                 <td><?= $siswa['telepon']?></td>
+                                <td><?= $siswa['tahun_mulai']?></td>
+                                <td>
+                                    <?= $siswa['sudah_lunas'] 
+                                        ? component('icon/done', ['size' => 2]) 
+                                        : component('icon/flag', ['size' => 2]);
+                                    ?>
+                                </td>
                                 <td>
                                     <a class="btn btn-warning" href="<?= BASE_URL?>/admin_siswa/edit/<?= $siswa['pengguna_id']?>">Edit</a>
                                     <form class="d-inline" action="<?= BASE_URL?>/admin_siswa/destroy/<?= $siswa['pengguna_id']?>" method="post">

@@ -79,7 +79,8 @@ $pembayaran_id = $data['pembayaran_id'];
         <?php else:?>
         <div class="p-3 text-center">
     
-            <i class="fa fa-fw fa-check fa-4x text-center text-success"></i> 
+            <!-- <i class="fa fa-fw fa-check fa-4x text-center text-success"></i>  -->
+            <?php component('icon/done', ['size' => 4]);?>
             <h4 class="text-center">Siswa ini telah melunaskan semua transaksi tahun <?= printYearSPP($tahun_dipilih)?></h4>
         </div>
         <?php endif;?>

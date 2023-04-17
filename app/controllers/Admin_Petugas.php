@@ -8,19 +8,11 @@ importModel('pengguna', 'petugas');
 class Admin_Petugas extends AdminController
 {
     /**
-     * only admin have access to run all method
-     */
-    public function __construct()
-    {
-        // parent::__construct();
-        // admin_only();
-    }
-
-    /**
      * display all petugas
      */
     public function index()
     {
+        admin_only();
         Petugas::setView('pengguna_petugas_view');
         $data = ['all_petugas' => Petugas::all()];
         return $this->render('petugas/index',$data);
@@ -31,14 +23,21 @@ class Admin_Petugas extends AdminController
      */
     public function create()
     {
+        admin_only();
         return $this->render('petugas/create');
     }
     
     /**
-     * display edit petugas form
+     * display edit petugas form, it can be used as edit profile for staff (petugas)
      */
     public function edit($pengguna_id)
     {
+        $user = getLoginAccount();
+        
+        if ($pengguna_id != $user['pengguna_id']) {
+            admin_only();
+        }
+
         Petugas::setView('pengguna_petugas_view');
         $data = ['petugas' => Petugas::find($pengguna_id)];
         return $this->render('petugas/edit',$data);
@@ -51,6 +50,7 @@ class Admin_Petugas extends AdminController
      */
     public function store()
     {
+        admin_only();
         $request = new Request();
 
         $username = $request->input('username');
@@ -93,6 +93,12 @@ class Admin_Petugas extends AdminController
     public function update($pengguna_id)
     {
         $request = new Request();
+        
+        $user = getLoginAccount();
+        
+        if ($pengguna_id != $user['pengguna_id']) {
+            admin_only();
+        }
 
         $username = $request->input('username');
         $nama_petugas = $request->input('nama_petugas');
@@ -123,6 +129,7 @@ class Admin_Petugas extends AdminController
      */
     public function destroy($pengguna_id)
     {
+        admin_only();
         $user = getLoginAccount();
         if ($pengguna_id == $user['pengguna_id']) {
             Flasher::set('danger', 'Anda tidak dapat menghapus diri anda sendiri.');
