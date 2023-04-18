@@ -9,7 +9,7 @@ class App
      * @var $controller
      * Default Controller for handle request
      */
-    protected $controller = 'Redirector';
+    protected $controller = 'Login';
 
     /**
      * @var string $method
@@ -29,12 +29,15 @@ class App
     public function __construct()
     {
         $url = $this->parseUrl();
+        
         if (isset($url[0])) {
-            if (file_exists('app/controllers/' . $url[0] . '.php')) {
-                $this->controller = $url[0];
+            if (file_exists('app/controllers/' . ucfirst($url[0]) . '.php')) {
+                $this->controller = ucfirst($url[0]);
                 unset($url[0]);
             }
         }
+        
+        $controller = $this->controller;
         
         require_once 'app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
@@ -45,6 +48,8 @@ class App
                 unset($url[1]);
             }
         }
+        
+        $method = $this->method;
         
         if (!empty($url)) {
             $this->params = array_values($url);
@@ -57,14 +62,15 @@ class App
         if (in_array($this->method, $post_method)) {
             http_post_only();
         }
-
+        
+       
         try {
             call_user_func_array([$this->controller, $this->method], $this->params);
         } catch (Exception $err) {
             Flasher::set('warning', 'Terjadi kesalahan pada sistem. Hubungi developer dengan segera.');
             ErrorHandler::log($err, 'Something went wrong', [
-                'controller' => $this->controller,
-                'method' => $this->method,
+                'controller' => $controller,
+                'method' => $method,
                 'parameter' => $this->params
             ]);
         }
@@ -86,6 +92,16 @@ class App
             $url = filter_var($_GET['url'], FILTER_SANITIZE_URL);
             $url = trim($url,'/');
             $url = explode('/', $url);
+            
+            // make admin_petugas to Admin_Petugas
+            if (isset($url[0])) {
+                $arr = array_map(function($item){
+                    return ucfirst($item);
+                }, explode('_', $url[0]));
+                
+                $url[0] = implode('_', $arr);
+            }
+            
             return $url;
         }
     }

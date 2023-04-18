@@ -17,10 +17,12 @@ class ErrorHandler
 
         $info = "ERROR $message context := ";
         foreach ($context as $k => $v) {
+            if (is_array($v)) {
+                $v = implode(',',$v);
+            }
             $msg = "$k = $v;";
             $info .= $msg;
         };
-
         $result = $info . 'error message := ' . $err->getMessage();
         error_log($result);
     }

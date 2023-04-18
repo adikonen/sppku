@@ -22,7 +22,7 @@ class Admin extends AdminController
         ];
 
         TemplateView::addScriptsSource(
-            'vendor/chart.js/Chart.js',
+            'vendor/chart.js/Chart.js'
         );
 
         TemplateView::addComponent('footer', 'charts/dashboard', [
