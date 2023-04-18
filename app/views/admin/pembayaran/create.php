@@ -7,11 +7,13 @@
                     'id' => 'nominal',
                     'label' => 'Nominal',
                     'type' => 'number',
+                    'placeholder' => 250000
                 ]);
                 component('input', [
                     'id' => 'tahun_ajaran',
                     'label' => 'Tahun Ajaran',
                     'type' => 'number',
+                    'placeholder' => 2020
                 ]);
             ?>
 

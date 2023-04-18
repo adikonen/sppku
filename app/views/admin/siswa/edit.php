@@ -29,11 +29,13 @@
                     'label' => 'Telepon',
                     'type' => 'number',
                     'value' => $siswa['telepon'],
+                    'placeholder' => '089534256442'
                 ]);
                 component('input',[
                     'id' => 'alamat',
                     'label' => 'Alamat',
-                    'value' => $siswa['telepon']
+                    'value' => $siswa['telepon'],
+                    'placeholder' => 'Jalan Gunung Rinjani, Gang Kambing No.37'
                 ]);
             ?>
             <div class="mb-3">

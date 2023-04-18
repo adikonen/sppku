@@ -9,13 +9,15 @@
                     'id' => 'nominal',
                     'label' => 'Nominal',
                     'type' => 'number',
-                    'value' => $pembayaran['nominal']
+                    'value' => $pembayaran['nominal'],
+                    'placeholder' => 250000
                 ]);
                 component('input', [
                     'id' => 'tahun_ajaran',
                     'label' => 'Tahun Ajaran',
                     'type' => 'number',
-                    'value' => $pembayaran['tahun_ajaran']
+                    'value' => $pembayaran['tahun_ajaran'],
+                    'placeholder' => 2020
                 ]);
             ?>
 

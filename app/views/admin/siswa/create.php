@@ -41,7 +41,7 @@
                     'id' => 'tahun_mulai',
                     'label' => 'Tahun Mulai (angkatan)',
                     'type' => 'number',
-                    'slot' => 'Pastikan tahun mulai yang anda masukan, Tahun Ajaran SPP sudah ada'
+                    'slot' => 'Pastikan tahun mulai yang anda masukan, Tahun pada referensi data Pembayaran sudah ada'
                 ]);
             ?>
             <div class="mb-3">

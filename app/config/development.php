@@ -1,6 +1,6 @@
 <?php 
 
-CONST BASE_URL = 'http://localhost/sppkul/public';
+CONST BASE_URL = 'http://localhost/sppku/public';
 CONST DB_HOST = 'localhost';
 CONST DB_USER = 'root';
 CONST DB_PASS = '';

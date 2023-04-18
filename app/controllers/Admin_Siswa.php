@@ -21,28 +21,6 @@ class Admin_Siswa extends AdminController
         $this->siswaHelper = $this->helper('SiswaHelper');
     }
 
-    // private function validateTahunMulai($tahun_ajaran)
-    // {
-    //     $count = count(Pembayaran::select('tahun_ajaran')
-    //         ->whereFor('tahun_ajaran','>', $tahun_ajaran)
-    //         ->get());
-
-    //     $error = [$tahun_ajaran + 1, $tahun_ajaran + 2];
-
-    //     if ($count >= 2) {
-    //         return ;
-    //     }
-
-    //     if ($count == 1) {
-    //         array_pop($error);
-    //     }
-
-    //     $years = implode(' dan ',$error);
-
-    //     Flasher::set('danger', "Buat data referensi pembayaran dengan angka tahun {$years} terlebih dahulu");
-    //     return redirect('admin_pembayaran');
-    // }
-
     /**
      * display siswa tables
      */
@@ -101,7 +79,15 @@ class Admin_Siswa extends AdminController
             ->validateNisAndNisn($siswa_form['nis'], $siswa_form['nisn']);
 
         // need pembayaran_id for creating new siswa
-        $pembayaran = Pembayaran::select('id')->where(['tahun_ajaran' => $siswa_form['tahun_mulai']])->first();
+        $pembayaran = Pembayaran::select('id')
+            ->where(['tahun_ajaran' => $siswa_form['tahun_mulai']])
+            ->first();
+
+        if ($pembayaran == null) {
+            $msg = "Tahun Ajaran {$siswa_form['tahun_mulai']} tidak terdaftar pada referensi pembayaran, buat referensi pembayaran dengan tahun {$siswa_form['tahun_mulai']}";
+            Flasher::set('danger', $msg);
+            return redirect('admin_pembayaran');
+        }
 
         $db = new Database;
         $db->beginTransaction();
