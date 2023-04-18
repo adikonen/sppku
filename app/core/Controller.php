@@ -9,7 +9,7 @@ class Controller
      */
     public function view($view, $data = [])
     {
-        require_once '../app/views/' . $view . '.php';
+        require_once 'app/views/' . $view . '.php';
     }
  
     /**
@@ -19,7 +19,7 @@ class Controller
      */
     public function helper($helper)
     {
-        require_once "../app/helpers/$helper.php";
+        require_once "app/helpers/$helper.php";
         return new $helper;
     }
 }

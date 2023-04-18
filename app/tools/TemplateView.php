@@ -11,7 +11,7 @@ class TemplateView
     {
         foreach ($scripts as $script) {
             $script = trim($script, '/');
-            $url = BASE_URL . "/$script";
+            $url = ASSET_URL . "/$script";
             static::$scripts[] = "<script src='$url'></script>";
         }
     }

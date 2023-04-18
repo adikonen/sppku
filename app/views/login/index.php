@@ -12,13 +12,13 @@
     <title><?= APP_NAME?></title>
 
     <!-- Custom fonts for this template-->
-    <link href="<?= BASE_URL?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_URL?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="<?= BASE_URL?>/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= ASSET_URL?>/css/sb-admin-2.min.css" rel="stylesheet">
     <style>
     .bg-login {
         background: url("http://localhost/spp/public/img/undraw_posting_photo.svg");
@@ -42,7 +42,7 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-5 d-none d-lg-block">
-                                <img src="<?= BASE_URL?>/img/undraw_posting_photo.svg" class="mt-5" alt="login-img" width="400px">
+                                <img src="<?= ASSET_URL?>/img/undraw_posting_photo.svg" class="mt-5" alt="login-img" width="400px">
                             </div>
                             <div class="col-lg-7">
                                 <div class="p-5">
@@ -79,14 +79,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?= BASE_URL?>/vendor/jquery/jquery.min.js"></script>
-    <script src="<?= BASE_URL?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= ASSET_URL?>/vendor/jquery/jquery.min.js"></script>
+    <script src="<?= ASSET_URL?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="<?= BASE_URL?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?= ASSET_URL?>/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<?= BASE_URL?>/js/sb-admin-2.min.js"></script>
+    <script src="<?= ASSET_URL?>/js/sb-admin-2.min.js"></script>
 
 </body>
 

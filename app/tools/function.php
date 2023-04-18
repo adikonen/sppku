@@ -8,14 +8,8 @@ function importModel(...$models)
 {
     $db = new Database;
     foreach ($models as $model) {
-        require_once "../app/models/$model.php";
+        require_once "app/models/$model.php";
         call_user_func([$model,'init'], $db);
-    }
-}
-
-function importHelper(...$helpers)
-{
-    foreach ($helpers as $helper) {
     }
 }
 
@@ -47,7 +41,7 @@ function redirect($path)
  */
 function component($component, $data = [])
 {
-    include "../app/views/components/$component.php";
+    include "app/views/components/$component.php";
 }
 
 /**

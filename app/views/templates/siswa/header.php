@@ -13,17 +13,17 @@
     <title><?= APP_NAME?></title>
 
     <!-- Custom fonts for this template -->
-    <link href="<?= BASE_URL?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= ASSET_URL?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?= BASE_URL?>/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= ASSET_URL?>/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="<?= BASE_URL?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="<?= BASE_URL?>/js/script.js"></script>
+    <link href="<?= ASSET_URL?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="<?= ASSET_URL?>/js/script.js"></script>
 
 </head>
 
@@ -142,7 +142,7 @@
                                     <?= $user['nama_siswa']?>
                                 </span>
                                 <img class="img-profile rounded-circle"
-                                    src="<?= BASE_URL?>/img/undraw_profile.svg">
+                                    src="<?= ASSET_URL?>/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

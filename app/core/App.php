@@ -29,31 +29,30 @@ class App
     public function __construct()
     {
         $url = $this->parseUrl();
-
         if (isset($url[0])) {
-            if (file_exists('../app/controllers/' . $url[0] . '.php')) {
+            if (file_exists('app/controllers/' . $url[0] . '.php')) {
                 $this->controller = $url[0];
                 unset($url[0]);
             }
         }
-
-        require_once '../app/controllers/' . $this->controller . '.php';
+        
+        require_once 'app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
-
+        
         if (isset($url[1])) {
             if (method_exists($this->controller, $url[1])) {
                 $this->method = $url[1];
                 unset($url[1]);
             }
         }
-
+        
         if (!empty($url)) {
             $this->params = array_values($url);
         }
-
-
+        
+        
         $post_method = ['store','update','action'];
-
+        
         // automatically http_post only each method in $post_method
         if (in_array($this->method, $post_method)) {
             http_post_only();
@@ -85,7 +84,7 @@ class App
     {
         if (isset($_GET['url'])) {
             $url = filter_var($_GET['url'], FILTER_SANITIZE_URL);
-            $url = rtrim($url,'/');
+            $url = trim($url,'/');
             $url = explode('/', $url);
             return $url;
         }
