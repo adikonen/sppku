@@ -17,9 +17,8 @@
                         <tr>
                             <th>Nis</th>
                             <th>Nama siswa</th>
-                            <th>Telepon</th>
-                            <th>Tahun Mulai</th>
-                            <th>SPP Lunas</th>
+                            <th>Angkatan</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -28,7 +27,6 @@
                             <tr>
                                 <td><?= $siswa['nis']?></td>
                                 <td><?= $siswa['nama_siswa']?></td>
-                                <td><?= $siswa['telepon']?></td>
                                 <td><?= $siswa['tahun_mulai']?></td>
                                 <td>
                                     <?= $siswa['sudah_lunas'] 
